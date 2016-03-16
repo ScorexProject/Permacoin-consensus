@@ -6,16 +6,19 @@ import akka.actor.ActorRefFactory
 import com.wordnik.swagger.annotations._
 import play.api.libs.json.Json
 import scorex.api.http.{ApiRoute, CommonApiFunctions}
+import scorex.app.Application
 import scorex.crypto.encode.Base58
 import scorex.perma.consensus.PermaConsensusModule
-import scorex.transaction.BlockStorage
 import spray.routing.Route
 
 
 @Api(value = "/consensus", description = "Consensus-related calls")
-class PermaConsensusApiRoute(consensusModule: PermaConsensusModule, blockStorage: BlockStorage)
+class PermaConsensusApiRoute(override val application: Application)
                             (implicit val context: ActorRefFactory)
   extends ApiRoute with CommonApiFunctions {
+
+  private val consensusModule = application.consensusModule.asInstanceOf[PermaConsensusModule]
+  private val blockStorage = application.blockStorage
 
   val blockchain = blockStorage.history
 

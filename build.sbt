@@ -2,14 +2,14 @@ organization := "org.consensusresearch"
 
 name := "scorex-perma"
 
-version := "1.2.0"
+version := "1.2.1"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
 resolvers += "SonaType" at "https://oss.sonatype.org/content/groups/public"
 
 libraryDependencies ++= Seq(
-  "org.consensusresearch" %% "scorex" % "1.2.0",
+  "org.consensusresearch" %% "scorex-basics" % "1.2.1",
   "org.scalatest" %% "scalatest" % "2.+" % "test",
   "org.scalactic" %% "scalactic" % "2.+" % "test",
   "org.scalacheck" %% "scalacheck" % "1.12.+" % "test"
