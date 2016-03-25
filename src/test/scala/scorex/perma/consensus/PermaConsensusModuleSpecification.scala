@@ -15,7 +15,7 @@ import scorex.storage.Storage
 import scorex.utils._
 
 class PermaConsensusModuleSpecification extends PropSpec with PropertyChecks with GeneratorDrivenPropertyChecks
-with Matchers with ScorexLogging {
+  with Matchers with ScorexLogging {
 
   implicit val settings = new Settings with PermaSettings {
     override lazy val filename = "settings-test.json"
@@ -37,7 +37,8 @@ with Matchers with ScorexLogging {
 
   log.info("Put ALL data to local storage")
   new File(settings.treeDir).mkdirs()
-  implicit lazy val authDataStorage: Storage[Long, AuthDataBlock[DataSegment]] = new AuthDataStorage(settings.authDataStorage)
+  implicit lazy val authDataStorage: Storage[Long, AuthDataBlock[DataSegment]] =
+    new AuthDataStorage(Some(settings.authDataStorage))
 
   def addBlock(i: Long): Unit = {
     authDataStorage.set(i, tree.byIndex(i).get)

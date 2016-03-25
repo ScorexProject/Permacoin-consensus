@@ -21,7 +21,7 @@ class AuthDataStorageSpecification extends PropSpec with PropertyChecks with Gen
 
 
   property("set value and get it") {
-    lazy val storage = new AuthDataStorage(treeDirName + "/test_db")
+    lazy val storage = new AuthDataStorage(None)
 
     forAll(keyVal) { x =>
       val key = x._1
