@@ -9,6 +9,7 @@ scalaVersion := "2.11.8"
 resolvers += "SonaType" at "https://oss.sonatype.org/content/groups/public"
 
 libraryDependencies ++= Seq(
+  "com.h2database" % "h2-mvstore" % "1.+",
   "org.consensusresearch" %% "scorex-basics" % "1.2.+",
   "org.scalatest" %% "scalatest" % "2.+" % "test",
   "org.scalactic" %% "scalactic" % "2.+" % "test",
