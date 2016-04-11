@@ -39,7 +39,7 @@ dependencyOverrides in ThisBuild ++= Set(
   "javax.ws.rs" % "jsr311-api" % "1.1.1",
   "joda-time" % "joda-time" % "2.8.1",
   "org.bitlet" % "weupnp" % "0.1.4",
-  "org.consensusresearch" % "scorex-basics_2.11" % "1.2.2",
+  "org.consensusresearch" % "scorex-basics_2.11" % "1.2.3",
   "org.consensusresearch" % "scrypto_2.11" % "1.0.4",
   "org.joda" % "joda-convert" % "1.7",
   "org.json4s" % "json4s-ast_2.11" % "3.2.11",
@@ -62,4 +62,4 @@ dependencyOverrides in ThisBuild ++= Set(
   "org.slf4j" % "slf4j-api" % "1.7.20",
   "org.whispersystems" % "curve25519-java" % "0.2.4"
 )
-// LIBRARY_DEPENDENCIES_HASH 1266edfa7acc7a15cf63a1d0d1905fdb012915dc
+// LIBRARY_DEPENDENCIES_HASH 0a360806fd336e48e89dc4c9602449d2ac48e147
