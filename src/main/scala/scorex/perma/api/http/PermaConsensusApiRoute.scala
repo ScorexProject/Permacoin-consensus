@@ -87,7 +87,7 @@ class PermaConsensusApiRoute(override val application: Application)
   def algo: Route = {
     path("algo") {
       jsonRoute {
-        Json.obj("consensus-algo" -> "perma").toString()
+        Json.obj("consensusAlgo" -> "perma").toString()
       }
     }
   }
