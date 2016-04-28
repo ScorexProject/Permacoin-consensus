@@ -3,13 +3,13 @@ package scorex.perma.api.http
 import javax.ws.rs.Path
 
 import akka.actor.ActorRefFactory
-import com.wordnik.swagger.annotations._
+import akka.http.scaladsl.server.Route
+import io.swagger.annotations._
 import play.api.libs.json.Json
 import scorex.api.http.{ApiRoute, CommonApiFunctions}
 import scorex.app.Application
 import scorex.crypto.encode.Base58
 import scorex.perma.consensus.PermaConsensusModule
-import spray.routing.Route
 
 
 @Api(value = "/consensus", description = "Consensus-related calls")
@@ -31,8 +31,8 @@ class PermaConsensusApiRoute(override val application: Application)
   @ApiOperation(value = "Last target", notes = "Target of a last block", httpMethod = "GET")
   def target: Route = {
     path("target") {
-      jsonRoute {
-        Json.obj("target" -> consensusModule.consensusBlockData(blockchain.lastBlock).target.toString).toString
+      getJsonRoute {
+        Json.obj("target" -> consensusModule.consensusBlockData(blockchain.lastBlock).target.toString)
       }
     }
   }
@@ -44,12 +44,12 @@ class PermaConsensusApiRoute(override val application: Application)
   ))
   def targetId: Route = {
     path("target" / Segment) { case encodedSignature =>
-      jsonRoute {
+      getJsonRoute {
         withBlock(blockchain, encodedSignature) { block =>
           Json.obj(
             "target" -> consensusModule.consensusBlockData(block).target.toString
           )
-        }.toString
+        }
       }
     }
   }
@@ -58,8 +58,8 @@ class PermaConsensusApiRoute(override val application: Application)
   @ApiOperation(value = "Current puzzle", notes = "Current puzzle", httpMethod = "GET")
   def puz: Route = {
     path("puz") {
-      jsonRoute {
-        Json.obj("puz" -> Base58.encode(consensusModule.generatePuz(blockchain.lastBlock))).toString
+      getJsonRoute {
+        Json.obj("puz" -> Base58.encode(consensusModule.generatePuz(blockchain.lastBlock)))
       }
     }
   }
@@ -71,23 +71,22 @@ class PermaConsensusApiRoute(override val application: Application)
   ))
   def puzId: Route = {
     path("puz" / Segment) { case encodedSignature =>
-      jsonRoute {
+      getJsonRoute {
         withBlock(blockchain, encodedSignature) { block =>
           Json.obj(
             "puz" -> Base58.encode(consensusModule.consensusBlockData(block).puz)
           )
-        }.toString
+        }
       }
     }
   }
-
 
   @Path("/algo")
   @ApiOperation(value = "Consensus algo", notes = "Shows which consensus algo being using", httpMethod = "GET")
   def algo: Route = {
     path("algo") {
-      jsonRoute {
-        Json.obj("consensusAlgo" -> "perma").toString()
+      getJsonRoute {
+        Json.obj("consensusAlgo" -> "perma")
       }
     }
   }

@@ -11,16 +11,15 @@ import scorex.network.{SendToChosen, ViewSynchronizer}
 import scorex.perma.settings.PermaConstants._
 import scorex.storage.Storage
 import scorex.utils.ScorexLogging
-import shapeless.Typeable._
 
 import scala.util.Random
 
 /**
-  *
-  * Permacoin segments synchronization.
-  * Some number of random peers are asked firstly.
-  *
-  */
+ *
+ * Permacoin segments synchronization.
+ * Some number of random peers are asked firstly.
+ *
+ */
 class SegmentsSynchronizer(application: Application, rootHash: Array[Byte], storage: Storage[Long, AuthDataBlock[DataSegment]])
   extends ViewSynchronizer with ScorexLogging {
 
@@ -32,7 +31,7 @@ class SegmentsSynchronizer(application: Application, rootHash: Array[Byte], stor
 
   override def receive: Receive = {
     case DataFromPeer(msgId, indexes: Seq[DataSegmentIndex]@unchecked, remote)
-      if msgId == GetSegmentsMessageSpec.messageCode && indexes.cast[Seq[DataSegmentIndex]].isDefined =>
+      if msgId == GetSegmentsMessageSpec.messageCode =>
 
       log.info("GetSegmentsMessage")
 
@@ -43,12 +42,12 @@ class SegmentsSynchronizer(application: Application, rootHash: Array[Byte], stor
       networkControllerRef ! SendToNetwork(msg, SendToChosen(Seq(remote)))
 
     case DataFromPeer(msgId, segments: Map[DataSegmentIndex, AuthDataBlock[DataSegment]]@unchecked, remote)
-      if msgId == SegmentsMessageSpec.messageCode && segments.cast[Map[DataSegmentIndex, AuthDataBlock[DataSegment]]].isDefined =>
+      if msgId == SegmentsMessageSpec.messageCode =>
       log.info(s"SegmentsMessage with ${segments.size} segments")
 
       if (segments.forall(s => s._2.check(s._1, rootHash)(FastCryptographicHash))) {
         segments.foreach(s => storage.set(s._1, s._2))
-        if(segments.nonEmpty) storage.commit()
+        if (segments.nonEmpty) storage.commit()
       } else {
         log.warn(s"Incorrect segments from " + remote)
         //TODO blacklisting
