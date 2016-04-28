@@ -12,6 +12,7 @@ import scorex.crypto.encode.Base58
 import scorex.perma.consensus.PermaConsensusModule
 
 
+@Path("/consensus")
 @Api(value = "/consensus", description = "Consensus-related calls")
 class PermaConsensusApiRoute(override val application: Application)
                             (implicit val context: ActorRefFactory)
