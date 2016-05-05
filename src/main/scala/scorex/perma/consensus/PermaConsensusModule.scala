@@ -6,9 +6,9 @@ import scorex.block.{Block, BlockField}
 import scorex.consensus.ConsensusModule
 import scorex.crypto.EllipticCurveImpl
 import scorex.crypto.ads.merkle.AuthDataBlock
-import scorex.crypto.hash.CryptographicHash.Digest
-import scorex.crypto.hash.FastCryptographicHash
-import scorex.crypto.singing.SigningFunctions.{PrivateKey, PublicKey}
+import scorex.crypto.hash.{CryptographicHash, FastCryptographicHash}
+import scorex.crypto.signatures.Curve25519
+import scorex.crypto.signatures.SigningFunctions.{PrivateKey, PublicKey}
 import scorex.network.NetworkController.SendToNetwork
 import scorex.network.SendToRandom
 import scorex.network.message.Message
@@ -142,7 +142,7 @@ class PermaConsensusModule(rootHash: Array[Byte], networkControllerOpt: Option[A
   /**
     * Puzzle to a new generate block on top of $block
     */
-  def generatePuz(block: Block): Digest = Hash(consensusBlockData(block).puz ++ consensusBlockData(block).ticket.s)
+  def generatePuz(block: Block): CryptographicHash#Digest = Hash(consensusBlockData(block).puz ++ consensusBlockData(block).ticket.s)
 
   private val NoSig = Array[Byte]()
 
@@ -150,7 +150,7 @@ class PermaConsensusModule(rootHash: Array[Byte], networkControllerOpt: Option[A
                                   puz: Array[Byte],
                                   target: BigInt,
                                   t: Ticket,
-                                  rootHash: Digest): Boolean = Try {
+                                  rootHash: CryptographicHash#Digest): Boolean = Try {
     val proofs = t.proofs
     require(proofs.size == PermaConstants.k)
     require(t.s.length == SSize)
@@ -192,7 +192,7 @@ class PermaConsensusModule(rootHash: Array[Byte], networkControllerOpt: Option[A
       case ((ri, sig_prev, seq), _) =>
         val segment = authDataStorage.get(ri).get
         val hi = Hash(puz ++ publicKey ++ sig_prev ++ segment.data)
-        val sig = EllipticCurveImpl.sign(privateKey, hi)
+        val sig = new Curve25519().sign(privateKey, hi)
         val rNext = calculateIndex(publicKey, BigInt(1, Hash(puz ++ publicKey ++ sig)).mod(PermaConstants.l).toInt)
 
         (rNext, sig, seq :+ PartialProof(sig, ri, segment))

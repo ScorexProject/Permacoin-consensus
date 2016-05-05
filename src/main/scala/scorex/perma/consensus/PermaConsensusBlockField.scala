@@ -3,9 +3,9 @@ package scorex.perma.consensus
 import com.google.common.primitives.{Bytes, Ints, Longs}
 import play.api.libs.json._
 import scorex.block.BlockField
-import scorex.crypto.EllipticCurveImpl
 import scorex.crypto.ads.merkle.AuthDataBlock
 import scorex.crypto.hash.FastCryptographicHash
+import scorex.crypto.signatures.Curve25519
 import scorex.perma.settings.PermaConstants
 
 import scala.annotation.tailrec
@@ -43,10 +43,10 @@ object PermaConsensusBlockField {
 
   val FieldName = "perma-consensus"
   val PuzLength = 32
-  val PublicKeyLength = EllipticCurveImpl.KeyLength
+  val PublicKeyLength = Curve25519.KeyLength25519
   val SLength = 32
   val HashLength = FastCryptographicHash.DigestSize
-  val SignatureLength = EllipticCurveImpl.SignatureLength
+  val SignatureLength = Curve25519.SignatureLength25519
 
   def parse(bytes: Array[Byte]): Try[PermaConsensusBlockField] = Try {
     @tailrec

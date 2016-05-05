@@ -10,7 +10,7 @@ resolvers += "SonaType" at "https://oss.sonatype.org/content/groups/public"
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2-mvstore" % "1.+",
-  "org.consensusresearch" %% "scrypto" % "1.2.0-M1",
+  "org.consensusresearch" %% "scrypto" % "1.2.0-M2",
   "org.consensusresearch" %% "scorex-basics" % "1.2.+" exclude("org.consensusresearch", "scrypto"),
   "org.scalatest" %% "scalatest" % "2.+" % "test",
   "org.scalactic" %% "scalactic" % "2.+" % "test",
