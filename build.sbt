@@ -5,6 +5,7 @@ name := "scorex-perma"
 scalaVersion := "2.11.8"
 
 resolvers += "SonaType" at "https://oss.sonatype.org/content/groups/public"
+resolvers += "SonaType snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2-mvstore" % "1.+",
