@@ -2,8 +2,6 @@ organization := "org.consensusresearch"
 
 name := "scorex-perma"
 
-version := "1.2.6"
-
 scalaVersion := "2.11.8"
 
 resolvers += "SonaType" at "https://oss.sonatype.org/content/groups/public"
