@@ -55,3 +55,4 @@ pomExtra in ThisBuild :=
     </developers>
 
 
+credentials in ThisBuild += Credentials(Path.userHome / ".ivy2" / ".credentials")
