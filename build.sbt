@@ -9,7 +9,7 @@ resolvers += "SonaType snapshots" at "https://oss.sonatype.org/content/repositor
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2-mvstore" % "1.+",
-  "org.consensusresearch" %% "scorex-basics" % "1.2.+",
+  "org.consensusresearch" %% "scorex-basics" % version.value,
   "org.scalatest" %% "scalatest" % "2.+" % "test",
   "org.scalactic" %% "scalactic" % "2.+" % "test",
   "org.scalacheck" %% "scalacheck" % "1.12.+" % "test"
