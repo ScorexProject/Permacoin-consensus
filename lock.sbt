@@ -50,7 +50,7 @@ dependencyOverrides in ThisBuild ++= Set(
   "org.apache.commons" % "commons-lang3" % "3.2.1",
   "org.bitlet" % "weupnp" % "0.1.4",
   "org.codehaus.woodstox" % "stax2-api" % "3.1.4",
-  "org.consensusresearch" % "scorex-basics_2.11" % "1.2.7-SNAPSHOT",
+  "org.consensusresearch" % "scorex-basics_2.11" % "1.2.7",
   "org.consensusresearch" % "scrypto_2.11" % "1.0.4",
   "org.javassist" % "javassist" % "3.18.2-GA",
   "org.joda" % "joda-convert" % "1.7",
@@ -74,4 +74,4 @@ dependencyOverrides in ThisBuild ++= Set(
   "org.whispersystems" % "curve25519-java" % "0.2.4",
   "org.yaml" % "snakeyaml" % "1.12"
 )
-// LIBRARY_DEPENDENCIES_HASH 67ba8307a33ed3b12a5eaf57e6645f9c91ca878b
+// LIBRARY_DEPENDENCIES_HASH 7bce2e99d54076623f45c0fb467aa8d03cdf0be4

@@ -25,8 +25,8 @@ import scala.concurrent.Future
 import scala.util.{Failure, Success, Try}
 
 /**
-  * Data and functions related to a Permacoin consensus protocol
-  */
+ * Data and functions related to a Permacoin consensus protocol
+ */
 class PermaConsensusModule(rootHash: Array[Byte], networkControllerOpt: Option[ActorRef] = None)
                           (implicit val authDataStorage: Storage[Long, AuthDataBlock[DataSegment]])
   extends ConsensusModule[PermaConsensusBlockData] with ScorexLogging {
@@ -126,7 +126,7 @@ class PermaConsensusModule(rootHash: Array[Byte], networkControllerOpt: Option[A
     case m => throw new AssertionError(s"Only PermaLikeConsensusBlockData is available, $m given")
   }
 
-  override def parseBlockData(bytes: Array[Byte]): Try[PermaConsensusBlockField] =
+  override def parseBytes(bytes: Array[Byte]): Try[PermaConsensusBlockField] =
     PermaConsensusBlockField.parse(bytes)
 
   override def genesisData: PermaConsensusBlockField =
@@ -140,8 +140,8 @@ class PermaConsensusModule(rootHash: Array[Byte], networkControllerOpt: Option[A
     PermaConsensusBlockField(data)
 
   /**
-    * Puzzle to a new generate block on top of $block
-    */
+   * Puzzle to a new generate block on top of $block
+   */
   def generatePuz(block: Block): Digest = Hash(consensusBlockData(block).puz ++ consensusBlockData(block).ticket.s)
 
   private val NoSig = Array[Byte]()
