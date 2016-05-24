@@ -2,15 +2,14 @@ organization := "org.consensusresearch"
 
 name := "scorex-perma"
 
-version := "1.2.6"
-
 scalaVersion := "2.11.8"
 
 resolvers += "SonaType" at "https://oss.sonatype.org/content/groups/public"
+resolvers += "SonaType snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2-mvstore" % "1.+",
-  "org.consensusresearch" %% "scorex-basics" % "1.2.7",
+  "org.consensusresearch" %% "scorex-basics" % version.value,
   "org.scalatest" %% "scalatest" % "2.+" % "test",
   "org.scalactic" %% "scalactic" % "2.+" % "test",
   "org.scalacheck" %% "scalacheck" % "1.12.+" % "test"
@@ -55,3 +54,4 @@ pomExtra in ThisBuild :=
     </developers>
 
 
+credentials in ThisBuild += Credentials(Path.userHome / ".ivy2" / ".credentials")
