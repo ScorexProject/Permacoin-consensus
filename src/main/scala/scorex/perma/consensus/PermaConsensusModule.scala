@@ -126,7 +126,7 @@ class PermaConsensusModule(rootHash: Array[Byte], networkControllerOpt: Option[A
     case m => throw new AssertionError(s"Only PermaLikeConsensusBlockData is available, $m given")
   }
 
-  override def parseBlockData(bytes: Array[Byte]): Try[PermaConsensusBlockField] =
+  override def parseBytes(bytes: Array[Byte]): Try[PermaConsensusBlockField] =
     PermaConsensusBlockField.parse(bytes)
 
   override def genesisData: PermaConsensusBlockField =
