@@ -21,7 +21,7 @@ dependencyOverrides in ThisBuild ++= Set(
   "com.google.code.findbugs" % "annotations" % "2.0.1",
   "com.google.code.findbugs" % "jsr305" % "2.0.1",
   "com.google.guava" % "guava" % "18.0",
-  "com.h2database" % "h2-mvstore" % "1.4.191",
+  "com.h2database" % "h2-mvstore" % "1.4.192",
   "com.thoughtworks.paranamer" % "paranamer" % "2.6",
   "com.typesafe" % "config" % "1.3.0",
   "com.typesafe" % "ssl-config-akka_2.11" % "0.2.1",
@@ -50,7 +50,7 @@ dependencyOverrides in ThisBuild ++= Set(
   "org.apache.commons" % "commons-lang3" % "3.2.1",
   "org.bitlet" % "weupnp" % "0.1.4",
   "org.codehaus.woodstox" % "stax2-api" % "3.1.4",
-  "org.consensusresearch" % "scorex-basics_2.11" % "1.2.7",
+  "org.consensusresearch" % "scorex-basics_2.11" % "1.2.8",
   "org.consensusresearch" % "scrypto_2.11" % "1.0.4",
   "org.javassist" % "javassist" % "3.18.2-GA",
   "org.joda" % "joda-convert" % "1.7",
@@ -74,4 +74,4 @@ dependencyOverrides in ThisBuild ++= Set(
   "org.whispersystems" % "curve25519-java" % "0.2.4",
   "org.yaml" % "snakeyaml" % "1.12"
 )
-// LIBRARY_DEPENDENCIES_HASH 7bce2e99d54076623f45c0fb467aa8d03cdf0be4
+// LIBRARY_DEPENDENCIES_HASH 5c6a8a3d0917b7c07d5a5e791f4e17adc4979239
